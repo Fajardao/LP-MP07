@@ -1,0 +1,25 @@
+{% if user.username %}
+    <!-- Se o utilizador estiver autenticado, redireciona para a página inicial -->
+    <meta http-equiv="refresh" content="0; url={% url 'index' %}" />
+{% endif %}
+
+{% if message %}
+    <!-- Se houver uma mensagem, exibe a mensagem -->
+    <p>{{ message }}</p>
+{% endif %}
+
+<h1>Login</h1>
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <!-- Campo para o nome de utilizador -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <!-- Campo para a palavra-passe -->
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <!-- Botão para submeter o formulário -->
+    <button type="submit">Login</button>
+</form>

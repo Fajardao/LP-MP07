@@ -1,0 +1,48 @@
+{% if topic %}
+    <!-- Exibe os detalhes do tópico -->
+    <ul>
+        <li>{{ topic.title }}</li>
+        <li>{{ topic.description }}</li>
+        <li>{{ topic.created_at }}</li>
+        <li>{{ topic.author }}</li>
+    </ul>
+
+    <h3> COMENTÁRIOS </h3>
+
+    {% if comments %}
+        <!-- Se houver comentários, exibe cada comentário numa lista não ordenada -->
+        <ul>
+            {% for comment in comments %}
+                <li>{{ comment.text }}</li>
+                <li>{{ comment.created_at }}</li>
+                <li>{{ comment.author }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <!-- Se não houver comentários, exibe uma mensagem a informar que não foram encontrados comentários -->
+        <p>Não foram encontrados comentários.</p>
+    {% endif %}
+
+    {% if user.username %}
+        <!-- Se o utilizador estiver autenticado, exibe um formulário para adicionar um novo comentário -->
+        <h3> ADICIONAR COMENTÁRIO </h3>
+
+        <form action="{% url 'detail' topic.id %}" method="post">
+            {% csrf_token %}
+            <label for="text">Comentário:</label>
+            <textarea id="comment" name="comment" required></textarea><br><br>
+
+            <button type="submit">Adicionar Comentário</button>
+        </form>
+    {% endif %}
+
+    {% if user == topic.author %}
+        <!-- Se o utilizador for o autor do tópico, exibe links para editar e eliminar o tópico -->
+        <a href="{% url 'edit' topic.id %}">Editar</a>
+        <a href="{% url 'delete' topic.id %}">Eliminar</a>
+    {% endif %}
+
+{% else %}
+    <!-- Se o tópico não for encontrado, exibe uma mensagem de erro 404 -->
+    <p>ERRO 404</p>
+{% endif %}

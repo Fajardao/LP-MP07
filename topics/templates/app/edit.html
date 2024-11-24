@@ -1,0 +1,26 @@
+{% if user == topic.author %}
+
+    <!-- Se o utilizador for o autor do tópico, exibe o formulário para editar o tópico -->
+    <h3> EDITAR TÓPICO </h3>
+
+    <form action="{% url 'detail' topic.id %}" method="post">
+        {% csrf_token %}
+        <!-- Campo para o título do tópico com o valor atual preenchido -->
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" value="{{ topic.title }}" required><br><br>
+
+        <!-- Campo para a descrição do tópico com o valor atual preenchido -->
+        <label for="description">Descrição:</label>
+        <textarea id="description" name="description" required>{{ topic.description }}</textarea><br><br>
+
+        <!-- Botão para submeter o formulário -->
+        <button type="submit">Editar</button>
+
+    </form>
+
+{% else %}
+
+    <!-- Se o utilizador não for o autor do tópico, exibe uma mensagem de erro 404 -->
+    <p>ERRO 404</p>
+
+{% endif %}

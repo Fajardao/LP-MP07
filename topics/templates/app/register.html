@@ -1,0 +1,33 @@
+{% if user.username %}
+    <!-- Se o utilizador estiver autenticado, redireciona para a página inicial -->
+    <meta http-equiv="refresh" content="0; url={% url 'index' %}" />
+{% endif %}
+
+{% if message %}
+    <!-- Se houver uma mensagem, exibe a mensagem -->
+    <p>{{ message }}</p>
+{% endif %}
+
+<h1>Register</h1>
+
+<form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    <!-- Campo para o nome de utilizador -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <!-- Campo para o email -->
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <!-- Campo para a palavra-passe -->
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <!-- Campo para confirmar a palavra-passe -->
+    <label for="password2">Confirm Password:</label>
+    <input type="password" id="password2" name="password2" required><br><br>
+
+    <!-- Botão para submeter o formulário -->
+    <button type="submit">Register</button>
+</form>

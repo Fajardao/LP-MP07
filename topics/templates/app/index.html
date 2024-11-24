@@ -1,0 +1,36 @@
+{% if user.username %}
+    <!-- Se o utilizador estiver autenticado, exibe uma mensagem de boas-vindas com o nome do utilizador e um link para logout -->
+    welcome {{ user.username }}, <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <!-- Se o utilizador não estiver autenticado, exibe links para login e registo -->
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Registar</a>
+{% endif %}
+
+{% if message %}
+    <!-- Se houver uma mensagem, exibe a mensagem -->
+    <p>{{ message }}</p>
+{% endif %}
+
+{% if list %}
+    <!-- Se houver uma lista de tópicos, exibe cada tópico numa lista não ordenada -->
+    <ul>
+        {% for topic in list %}
+            <li>
+                <a href="/app/{{topic.id}}">
+                    <p>{{ topic.title }}</p>
+                    <p>{{ topic.description }}</p>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <!-- Se não houver itens na lista, exibe uma mensagem a informar que não foram encontrados itens -->
+    <p>Não foram encontrados itens.</p>
+{% endif %}
+
+{% if user.username %}
+    <!-- Se o utilizador estiver autenticado, exibe uma secção para adicionar um novo tópico -->
+    <h3> ADICIONAR NOVO TÓPICO </h3>
+    <a href="/app/new">Adicionar novo tópico</a>
+{% endif %}

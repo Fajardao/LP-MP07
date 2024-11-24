@@ -1,0 +1,21 @@
+{% if user.username %}
+{% else %}
+    <!-- Se o utilizador estiver autenticado, não o redireciona para a página inicial -->
+    <meta http-equiv="refresh" content="0; url={% url 'index' %}" />
+{% endif %}
+    
+<h1>Criar Novo Tópico</h1>
+<form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    <!-- Campo para o título do tópico -->
+    <label for="title">Título:</label>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <!-- Campo para a descrição do tópico -->
+    <label for="description">Descrição:</label>
+    <textarea id="description" name="description" required></textarea><br><br>
+
+    <!-- Botão para submeter o formulário -->
+    <button type="submit">Criar Tópico</button>
+</form>
+
