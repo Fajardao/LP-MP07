@@ -23,8 +23,8 @@ Certifique-se de que possui as seguintes ferramentas instaladas:
 ### Passos para Instalação
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/SEU_UTILIZADOR/NOME_DO_REPOSITORIO.git
-   cd NOME_DO_REPOSITORIO
+   git clone https://github.com/Fajardao/LP-MP07.git
+   cd LP-MP07
    ```
 
 2. Crie e ative um ambiente virtual (opcional, mas recomendado):
